@@ -8,6 +8,7 @@ import com.bellonee.security.hash
 import com.bellonee.tables.UserTable
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.statements.InsertStatement
 
 class UserServiceImpl : UserService {
@@ -37,15 +38,19 @@ class UserServiceImpl : UserService {
 
     }
 
-    override suspend fun loginUser(loginRequest: LoginRequest) {
-        TODO("Not yet implemented")
-    }
+//    override suspend fun loginUser(loginRequest: LoginRequest) {
+//        TODO("Not yet implemented")
+//    }
 
     override suspend fun findUserByEmail(email: String): User? {
-        TODO("Not yet implemented")
+        val user = dbQuery {
+            UserTable.select{ UserTable.email.eq(email) }
+                .map { rowToUser(it) }.singleOrNull()
+        }
+        return user
     }
 
-    override suspend fun findAllUser(): List<User> {
-        TODO("Not yet implemented")
-    }
+//    override suspend fun findAllUser(): List<User> {
+//        TODO("Not yet implemented")
+//    }
 }
