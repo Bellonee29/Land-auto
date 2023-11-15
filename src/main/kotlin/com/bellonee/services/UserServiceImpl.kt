@@ -33,6 +33,7 @@ class UserServiceImpl : UserService {
             email = row[UserTable.email],
             address = row[UserTable.address],
             phoneNumber = row[UserTable.phoneNumber],
+            password = row[UserTable.password],
             createAt = row[UserTable.createAt].toString(),
         )
 

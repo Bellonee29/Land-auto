@@ -4,6 +4,7 @@ import com.bellonee.database.DatabaseServices
 import com.bellonee.repository.UserRepository
 import com.bellonee.repository.UserRepositoryImpl
 import com.bellonee.routes.userRoutes
+import com.bellonee.security.configureSecurity
 import com.bellonee.services.UserService
 import com.bellonee.services.UserServiceImpl
 import io.ktor.serialization.jackson.*
@@ -22,6 +23,7 @@ fun Application.module() {
         install(ContentNegotiation){
             jackson ()
         }
+    configureSecurity()
     val service: UserService = UserServiceImpl()
     val repository: UserRepository = UserRepositoryImpl(service)
     userRoutes(repository)

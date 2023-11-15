@@ -10,6 +10,7 @@ data class User (
     val email: String,
     val address: String,
     val phoneNumber: String,
+    val password: String,
     var authToken: String? = null,
     val createAt: String
 )
