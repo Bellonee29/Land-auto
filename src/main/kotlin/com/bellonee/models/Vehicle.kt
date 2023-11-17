@@ -1,18 +1,20 @@
 package com.bellonee.models
 
-import kotlin.random.Random
+import com.bellonee.enums.EngineType
+import com.bellonee.enums.VehicleType
 import kotlinx.serialization.Serializable
+import java.time.LocalDate
 
 
 @Serializable
 data class Vehicle (
     val id: Int,
-    val vehicleType: String,
+    val vehicleType: VehicleType,
     val industryModelCode: String,
     val engineNumber: String, // inline value class
-    val engineType: String, // make as enum type
+    val engineType: EngineType, // make as enum type
     val fuelType: String, // Make as enum type
-    val firstRegistrationDate: String, // convert to date format
+    val firstRegistrationDate: LocalDate, // convert to date format
     val numberOfSeats: Int,
     val acFitted: String,
     val colour:String,
@@ -20,7 +22,7 @@ data class Vehicle (
     val vehicleYear: String,
     val models: String,
     val series: String,
-    val marketPrice: Int, // this should be Double
+    val marketPrice: Double, // this should be Double
     val displaySupported: String,
 ) {
 

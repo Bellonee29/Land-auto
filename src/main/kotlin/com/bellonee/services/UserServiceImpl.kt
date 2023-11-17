@@ -1,8 +1,8 @@
 package com.bellonee.services
 
 import com.bellonee.database.DatabaseServices.dbQuery
-import com.bellonee.dto.request.LoginRequest
 import com.bellonee.dto.request.UserRequest
+import com.bellonee.enums.Role
 import com.bellonee.models.User
 import com.bellonee.security.hash
 import com.bellonee.tables.UserTable
@@ -19,6 +19,7 @@ class UserServiceImpl : UserService {
                 it[fullName] = userRequest.fullName
                 it[email] = userRequest.email
                 it[password] = hash(userRequest.password)
+                it[role] = userRequest.role.toString()
                 it[address] = userRequest.address
                 it[phoneNumber] = userRequest.phoneNumber
             }
@@ -31,9 +32,10 @@ class UserServiceImpl : UserService {
             id = row[UserTable.id],
             fullName = row[UserTable.fullName],
             email = row[UserTable.email],
+            password = row[UserTable.password],
+            role = Role.valueOf(row[UserTable.role]),
             address = row[UserTable.address],
             phoneNumber = row[UserTable.phoneNumber],
-            password = row[UserTable.password],
             createAt = row[UserTable.createAt].toString(),
         )
 

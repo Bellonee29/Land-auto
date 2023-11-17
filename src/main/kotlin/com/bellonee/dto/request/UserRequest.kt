@@ -1,5 +1,7 @@
 package com.bellonee.dto.request
 
+import com.bellonee.enums.Role
+
 data class UserRequest(
     val fullName: String,
     val email: String,
