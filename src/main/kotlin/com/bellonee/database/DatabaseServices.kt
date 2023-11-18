@@ -15,6 +15,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DatabaseServices {
     fun init() {
         Database.connect(hikari())
+
         transaction {
             SchemaUtils.create(UserTable)
             SchemaUtils.create(AdminTable)

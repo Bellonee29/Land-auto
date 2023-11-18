@@ -1,6 +1,7 @@
 package com.bellonee.models
 
 import com.bellonee.enums.EngineType
+import com.bellonee.enums.FuelType
 import com.bellonee.enums.VehicleType
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
@@ -13,7 +14,7 @@ data class Vehicle (
     val industryModelCode: String,
     val engineNumber: String, // inline value class
     val engineType: EngineType, // make as enum type
-    val fuelType: String, // Make as enum type
+    val fuelType: FuelType, // Make as enum type
     val firstRegistrationDate: LocalDate, // convert to date format
     val numberOfSeats: Int,
     val acFitted: String,

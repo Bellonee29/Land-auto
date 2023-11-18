@@ -6,7 +6,6 @@ import com.bellonee.models.User
 import com.bellonee.security.JWTConfiguration
 import com.bellonee.security.hash
 import com.bellonee.services.UserService
-import com.bellonee.tables.UserTable.password
 import com.bellonee.utils.BaseResponse
 import com.bellonee.utils.BaseResponse.ErrorResponse
 import com.bellonee.utils.BaseResponse.SuccessResponse
@@ -20,7 +19,7 @@ class UserRepositoryImpl(
         } else{
             val user = userService.registerUser(userRequest)
             if (user != null) {
-                val token = JWTConfiguration.instance.createAccessToken(user.id, user.fullName, user.email)
+                val token = JWTConfiguration.instance.createAccessToken(user.id, user.fullName, user.email, user.role)
                 user.authToken = token
                 SuccessResponse(data = user, "User register successfully")
             } else{
@@ -31,7 +30,7 @@ class UserRepositoryImpl(
     override suspend fun loginUser(loginRequest: LoginRequest): BaseResponse<Any> {
         val user = userService.findUserByEmail(loginRequest.email)
         return if (user != null && isPasswordValid(user, loginRequest.password)) {
-            val token = JWTConfiguration.instance.createAccessToken(user.id, user.fullName, user.email)
+            val token = JWTConfiguration.instance.createAccessToken(user.id, user.fullName, user.email, user.role)
             user.authToken = token
             SuccessResponse(data = user, message = "Login successful")
         } else {
